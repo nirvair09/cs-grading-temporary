@@ -3,32 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automatic Grading System</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Course Grading Python Engine</title>
+    <style>
+        /* Background Gradient */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #b39ddb, #e6ceff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        /* Centering Container */
+        .container {
+            text-align: center;
+            background-color: #ffffffcc; /* Transparent white */
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 400px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Heading */
+        h1 {
+            font-size: 24px;
+            color: #5e35b1;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Label */
+        label {
+            display: block;
+            font-size: 16px;
+            color: #5e35b1;
+            margin-bottom: 8px;
+        }
+
+        /* File Input */
+        input[type="file"] {
+            display: block;
+            margin: 10px auto;
+            padding: 5px;
+            font-size: 14px;
+            background-color: #e8eaf6;
+            border-radius: 5px;
+            color: #333;
+            width: 100%;
+        }
+
+        /* Button */
+        button {
+            background-color: #7e57c2;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #5e35b1;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Automatic Grading System</h1>
-        <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" required>
+        <h1>Course Grading Python Engine</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="file">Choose an Excel file:</label>
+            <input type="file" name="file" id="file" required>
             <button type="submit">Upload and Process</button>
         </form>
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            <ul class="flash-messages">
-              {% for message in messages %}
-                <li>{{ message }}</li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-        {% endwith %}
-        {% if grade_file and roll_file %}
-        <div class="download-section">
-            <p>Download Processed Files:</p>
-            <a href="{{ url_for('download_file', filename=grade_file) }}" download>Download Grade Sorted File</a>
-            <a href="{{ url_for('download_file', filename=roll_file) }}" download>Download Roll Sorted File</a>
-        </div>
-        {% endif %}
     </div>
 </body>
 </html>

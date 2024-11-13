@@ -11,7 +11,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def index():
-    return render_template('home.html')  # Ensure you have a home.html file for file upload UI
+    return render_template('index.html')  # Ensure you have a home.html file for file upload UI
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
